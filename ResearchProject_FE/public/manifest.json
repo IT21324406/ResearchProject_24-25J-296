@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "UI Personalization Extension",
+  "short_name": "UI Personalizer",
+  "version": "1.0",
+  "description": "A Chrome extension for UI personalization with AI and ML features.",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "favicon.ico",
+      "48": "logo192.png",
+      "128": "logo512.png"
+    }
+  },
+  "permissions": ["storage"],
+  "icons": {
+    "16": "favicon.ico",
+    "32": "logo192.png",
+    "48": "logo192.png",
+    "128": "logo512.png"
+  }
+}
