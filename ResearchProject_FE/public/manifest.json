@@ -12,10 +12,12 @@
       "128": "logo512.png"
     }
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "icons": {
     "16": "favicon.ico",
-    "32": "logo192.png",
     "48": "logo192.png",
     "128": "logo512.png"
   }
