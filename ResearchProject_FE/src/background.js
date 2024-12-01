@@ -1,14 +1,19 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "sendDataToBackend") {
-    fetch("http://127.0.0.1:5000/track", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(message.data),
+chrome.runtime.onInstalled.addListener(() => {
+  console.log("Extension installed.");
+});
+
+chrome.action.onClicked.addListener((tab) => {
+  fetch("http://127.0.0.1:5000/preferences")
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.preferences) {
+        chrome.tabs.sendMessage(tab.id, {
+          action: "applyPreferences",
+          preferences: data.preferences,
+        });
+      } else {
+        console.warn("No preferences available.");
+      }
     })
-      .then((response) => response.json())
-      .then((responseData) => console.log("Backend response:", responseData))
-      .catch((error) => console.error("Error:", error));
-  }
+    .catch((error) => console.error("Failed to fetch preferences:", error));
 });

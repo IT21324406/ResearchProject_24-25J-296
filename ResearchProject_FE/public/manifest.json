@@ -12,7 +12,7 @@
       "128": "logo512.png"
     }
   },
- "permissions": ["storage", "scripting", "activeTab"],
+ "permissions": ["storage", "scripting", "activeTab", "tabs"],
  "host_permissions": ["<all_urls>"], 
 "content_scripts": [
   {
