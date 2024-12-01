@@ -12,7 +12,18 @@
       "128": "logo512.png"
     }
   },
-  "permissions": ["storage"],
+ "permissions": ["storage", "scripting", "activeTab", "tabs"],
+ "host_permissions": ["<all_urls>"], 
+"content_scripts": [
+  {
+    "matches": ["<all_urls>"], 
+    "js": ["content.js"],      
+    "run_at": "document_idle"
+  }
+],
+"background": {
+  "service_worker": "background.js"
+},
   "icons": {
     "16": "favicon.ico",
     "32": "logo192.png",
