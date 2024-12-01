@@ -20,5 +20,8 @@
     "16": "favicon.ico",
     "48": "logo192.png",
     "128": "logo512.png"
-  }
+  },
+  "host_permissions": [
+    "http://localhost:5000/*"
+  ]
 }
