@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* global chrome */
+import React, { useState, useEffect } from "react";
 import FeedbackForm from "./FeedbackForm";
 import "./App.css";
 
@@ -42,18 +43,6 @@ function App() {
     }
   };
 
-  return (
-    <div>
-      <h1>Chrome Extension: UI Personalization</h1>
-      <button onClick={() => setShowForm(true)}>Give Feedback</button>
-
-      {showForm && <FeedbackForm onSubmit={handleFeedbackSubmit} />}
-
-/* global chrome */
-import React, { useState, useEffect } from "react";
-import "./App.css";
-
-function App() {
   const [status, setStatus] = useState("Loading preferences...");
   const [preferences, setPreferences] = useState(null);
 
@@ -116,9 +105,10 @@ function App() {
   return (
     <div className="App">
       <h1>UI Personalization Extension</h1>
-      <button onClick={() => alert("Feature 1: User Feedback Form")}>
-        Feature 1: Feedback Form
-      </button>
+      <button onClick={() => setShowForm(true)}>Give Feedback</button>
+
+      {showForm && <FeedbackForm onSubmit={handleFeedbackSubmit} />}
+
       <button onClick={applyPreferences}>Apply Preferences</button>
       <p>{status}</p>
       {preferences ? (
