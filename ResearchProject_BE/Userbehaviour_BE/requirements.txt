@@ -1,0 +1,16 @@
+# Flask
+# pickle-mixin
+# flask
+# numpy
+# Flask==2.3.2
+# flask-cors==3.1.1
+# tensorflow==2.13.0
+# numpy==1.23.0
+# pomegranate==1.1.1
+
+
+Flask==2.3.2
+flask-cors==3.1.1
+tensorflow==2.13.0
+numpy==1.23.0
+pomegranate==1.1.1
