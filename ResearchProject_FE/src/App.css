@@ -38,6 +38,14 @@
 }
 
 
+/* styles.css */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+
+
 /*ROSA M.D*/
 .feature2-container {
   position: relative;
@@ -71,3 +79,4 @@
 .submenu button:hover {
   background-color: #0056b3;
 }
+
