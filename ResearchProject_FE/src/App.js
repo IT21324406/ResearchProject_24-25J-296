@@ -75,7 +75,8 @@ function App() {
           <h2>Your Preferences:</h2>
           <p>Font Size: {preferences.font_size.toFixed(1)}px</p>
           <p>Zoom Level: {preferences.zoom_level.toFixed(1)}%</p>
-          <p>Font Color: {preferences.font_color}</p>
+          <p>Inactivity Time: {preferences.inactivity_time} seconds</p>
+          <p>Adjustment: {preferences.adjustment}</p>
         </div>
       ) : (
         <p>Loading preferences...</p>

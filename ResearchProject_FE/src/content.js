@@ -1,96 +1,187 @@
-let zoomLevel = 100;
+  let zoomLevel = 100;
+  let lastScrollTop = 0;
+  let lastScrollTime = Date.now();
+  let inactivityTime = 0;
+  let isUserActive = true;
 
-// Track zoom events
-window.addEventListener("resize", () => {
-  zoomLevel = Math.round(window.devicePixelRatio * 100);
-  console.log("Zoom Level: ", zoomLevel);
-});
 
-// Track user interactions
-document.addEventListener("click", (event) => {
-  const computedStyle = window.getComputedStyle(event.target);
-  const fontSize = computedStyle.fontSize;
-  const fontColor = computedStyle.color;
+  // Track zoom events
+  window.addEventListener("resize", () => {
+    zoomLevel = Math.round(window.devicePixelRatio * 100);
+    console.log("Zoom Level: ", zoomLevel);
+  });
 
-  // Send interaction data to the backend
+  // Track scrolling behavior
+  window.addEventListener("scroll", () => {
+    let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+    let currentTime = Date.now();
+    let timeDiff = currentTime - lastScrollTime;
+
+    let scrollSpeed = Math.abs((currentScrollTop - lastScrollTop) / (timeDiff || 1)); // Pixels per millisecond
+    lastScrollTop = currentScrollTop;
+    lastScrollTime = currentTime;
+
+    console.log("Scrolling Speed:", scrollSpeed);
+    sendUserBehaviorData({ scrollSpeed, zoomLevel });
+  });
+
+
+  // Track user inactivity
+  setInterval(() => {
+    if (!isUserActive) {
+      inactivityTime += 1;
+    }
+    sendUserBehaviorData({ inactivityTime, isUserActive });
+  }, 10000); // Every 10 seconds
+
+
+  // Detect user interactions (reset inactivity)
+  document.addEventListener("mousemove", () => (isUserActive = true));
+  document.addEventListener("keypress", () => (isUserActive = true));
+  document.addEventListener("click", (event) => {
+    isUserActive = true;
+    inactivityTime = 0; // Reset inactivity
+
+    const computedStyle = window.getComputedStyle(event.target);
+    const fontSize = computedStyle.fontSize;
+    const fontColor = computedStyle.color;
+
+    sendUserBehaviorData({ fontSize, fontColor, zoomLevel, scrollSpeed });
+  });
+
+  // Detect if user switches tabs (visibility tracking)
+  document.addEventListener("visibilitychange", () => {
+    isUserActive = !document.hidden;
+  });       
+
+
+// Function to send behavior data to backend
+function sendUserBehaviorData(data) {
   fetch("http://127.0.0.1:5000/track", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      fontSize: fontSize,
-      fontColor: fontColor,
-      zoomLevel: zoomLevel,
-    }),
+    body: JSON.stringify(data),
   })
     .then((response) => response.json())
-    .then((data) => console.log("Data tracked:", data))
+    .then((data) => console.log("Behavior tracked:", data))
     .catch((error) => console.error("Tracking failed:", error));
-});
+}
 
-// // Listen for preferences from background or popup
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//   if (message.action === "applyPreferences" && message.preferences) {
-//     const { averageFontSize, averageZoomLevel, averageFontColor } =
-//       message.preferences;
 
-//     console.log("Applying preferences:", message.preferences);
+  //   // Send scroll data to backend
+  //   fetch("http://127.0.0.1:5000/track", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       scrollSpeed: scrollSpeed.toFixed(2),
+  //       zoomLevel: zoomLevel,
+  //     }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => console.log("Scrolling data tracked:", data))
+  //     .catch((error) => console.error("Scrolling tracking failed:", error));
+  // });
 
-//     const elements = document.querySelectorAll("*");
+  // Track user interactions
+  document.addEventListener("click", (event) => {
+    const computedStyle = window.getComputedStyle(event.target);
+    const fontSize = computedStyle.fontSize;
+    const fontColor = computedStyle.color;
 
-//     elements.forEach((element) => {
-//       const computedStyle = window.getComputedStyle(element);
-//       const currentFontSize = parseFloat(computedStyle.fontSize);
+    // Send interaction data to the backend
+    fetch("http://127.0.0.1:5000/track", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fontSize: fontSize,
+        fontColor: fontColor,
+        zoomLevel: zoomLevel,
+        scrollSpeed: lastScrollTop / (Date.now() - lastScrollTime || 1),
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log("Data tracked:", data))
+      .catch((error) => console.error("Tracking failed:", error));
+  });
 
-//       // Apply font size
-//       if (currentFontSize) {
-//         const newFontSize = averageFontSize;
-//         element.style.fontSize = `${newFontSize.toFixed(2)}px`;
-//       }
 
-//       // Apply font color
-//       element.style.color = averageFontColor;
-//     });
+  // // Listen for preferences from background or popup
+  // chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  //   if (message.action === "applyPreferences" && message.preferences) {
+  //     const { averageFontSize, averageZoomLevel, averageFontColor } =
+  //       message.preferences;
 
-//     // Adjust zoom level
-//     document.body.style.transform = `scale(${averageZoomLevel / 100})`;
-//     document.body.style.transformOrigin = "0 0";
+  //     console.log("Applying preferences:", message.preferences);
 
-//     sendResponse({ message: "Preferences applied successfully." });
-//   } else {
-//     sendResponse({ message: "No preferences to apply." });
-//   }
-// });
+  //     const elements = document.querySelectorAll("*");
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "applyPreferences" && message.preferences) {
-    const { font_size, zoom_level, font_color } = message.preferences;
+  //     elements.forEach((element) => {
+  //       const computedStyle = window.getComputedStyle(element);
+  //       const currentFontSize = parseFloat(computedStyle.fontSize);
 
-    console.log("Applying preferences:", { font_size, zoom_level, font_color });
-    // Apply font size to the body and all child elements
-    document.querySelectorAll("*").forEach((element) => {
-      element.style.fontSize = `${font_size}px`;
-    });
+  //       // Apply font size
+  //       if (currentFontSize) {
+  //         const newFontSize = averageFontSize;
+  //         element.style.fontSize = `${newFontSize.toFixed(2)}px`;
+  //       }
 
-    // Apply zoom level to the body
-    // if (zoom_level) {
-    //   document.body.style.transform = `scale(${zoom_level / 100})`;
-    //   document.body.style.transformOrigin = "0 0"; // Maintain alignment
-    // }
+  //       // Apply font color
+  //       element.style.color = averageFontColor;
+  //     });
 
-    // Apply font color to the body and all text elements
-    document.querySelectorAll("*").forEach((element) => {
-      const computedStyle = window.getComputedStyle(element);
-      if (computedStyle.color) {
-        element.style.color = font_color;
-      }
-    });
+  //     // Adjust zoom level
+  //     document.body.style.transform = `scale(${averageZoomLevel / 100})`;
+  //     document.body.style.transformOrigin = "0 0";
 
-    // Send a response back to confirm
-    sendResponse({ status: "Preferences applied successfully!" });
-  } else {
-    console.error("No valid preferences received:", message);
-    sendResponse({ status: "Failed to apply preferences." });
-  }
-});
+  //     sendResponse({ message: "Preferences applied successfully." });
+  //   } else {
+  //     sendResponse({ message: "No preferences to apply." });
+  //   }
+  // });
+
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === "applyPreferences" && message.preferences) {
+      const { font_size, zoom_level, font_color } = message.preferences;
+
+      console.log("Applying preferences:", { font_size, zoom_level, font_color });
+      // Apply font size to the body and all child elements
+      document.querySelectorAll("*").forEach((element) => {
+        element.style.fontSize = `${font_size}px`;
+        element.style.color = font_color; 
+      });
+
+      sendResponse({ status: "Preferences applied successfully!" });
+
+      
+
+      // Apply zoom level to the body
+      // if (zoom_level) {
+      //   document.body.style.transform = `scale(${zoom_level / 100})`;
+      //   document.body.style.transformOrigin = "0 0"; // Maintain alignment
+      // }
+
+      // // Apply font color to the body and all text elements
+      // document.querySelectorAll("*").forEach((element) => {
+      //   const computedStyle = window.getComputedStyle(element);
+      //   if (computedStyle.color) {
+      //     element.style.color = font_color;
+      //   }
+      // });
+      
+      // Send a response back to confirm
+      sendResponse({ status: "Preferences applied successfully!" });
+ // Apply zoom level to the body
+    document.body.style.transform = `scale(${zoom_level / 100})`;
+    document.body.style.transformOrigin = "0 0"; // Maintain alignment
+      
+    } else {
+      console.error("No valid preferences received:", message);
+      sendResponse({ status: "Failed to apply preferences." });
+    }
+  });
