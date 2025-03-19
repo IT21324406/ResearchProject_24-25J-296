@@ -1,42 +1,16 @@
 {
   "manifest_version": 3,
-  "name": "UI Personalization Extension",
-  "short_name": "UI Personalizer",
+  "name": "Medium Summary Generator",
   "version": "1.0",
-  "description": "A Chrome extension for UI personalization with AI and ML features.",
+  "description": "Summarizes Medium articles using AI",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://medium.com/*"],
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "favicon.ico",
-      "48": "logo192.png",
-      "128": "logo512.png"
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
     }
-  },
-
-  "permissions": ["storage", "activeTab", "scripting"],
-  "background": {
-    "service_worker": "background.js"
-  },
-
- "permissions": ["storage", "scripting", "activeTab", "tabs"],
- "host_permissions": ["<all_urls>"], 
-"content_scripts": [
-  {
-    "matches": ["<all_urls>"], 
-    "js": ["content.js"],      
-    "run_at": "document_idle"
   }
-],
-"background": {
-  "service_worker": "background.js"
-},
-
-  "icons": {
-    "16": "favicon.ico",
-    "48": "logo192.png",
-    "128": "logo512.png"
-  },
-  "host_permissions": [
-    "http://localhost:5000/*"
-  ]
 }
