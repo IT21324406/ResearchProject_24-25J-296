@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "EyeCare AI Plugin",
+    "description": "A plugin to adjust the theme based on user's vision condition",
+    "version": "1.0",
+    "action": {
+      "default_popup": "popup.html"
+   
+    },
+    "permissions": [
+      "storage",
+      "activeTab"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "host_permissions": [
+      "http://192.168.1.7:5001/*"
+    ]
+  }
+  

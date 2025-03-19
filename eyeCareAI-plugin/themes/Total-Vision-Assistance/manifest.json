@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Total Vision Assistance Theme",
+  "version": "1.0",
+  "description": "A high-contrast theme with extra-large text and enhanced UI for users needing maximum vision support.",
+  "theme": {
+    "colors": {
+      "frame": [0, 0, 0], 
+      "toolbar": [255, 255, 255],
+      "toolbar_text": [0, 0, 0],
+      "tab_text": [0, 0, 0],
+      "tab_background_text": [255, 255, 255],
+      "bookmark_text": [0, 0, 0],
+      "button_background": [255, 0, 0],
+      "button_text": [255, 255, 255],
+      "ntp_background": [255, 255, 255],
+      "ntp_text": [0, 0, 0],
+      "ntp_header": [255, 0, 0],
+      "ntp_link": [0, 0, 255],
+      "ntp_section": [230, 230, 230]
+    },
+    "properties": {
+      "ntp_background_color": [255, 255, 255],
+      "ntp_text_color": [0, 0, 0],
+      "ntp_button_color": [0, 0, 255],  
+      "ntp_logo_color": [255, 0, 0], 
+      "ntp_searchbox_background": [230, 230, 230], 
+      "ntp_searchbox_text_color": [0, 0, 0],  
+      "ntp_searchbox_border": [0, 0, 255]  
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "Mild Color Blindness Theme",
+  "version": "1.0",
+  "description": "A Chrome theme designed for users with mild color blindness (Deuteranopia-friendly palette).",
+  "theme": {
+    "colors": {
+      "frame": [79, 126, 75], 
+      "toolbar": [224, 224, 224],
+      "toolbar_text": [51, 51, 51],
+      "tab_text": [51, 51, 51],
+      "tab_background_text": [255, 255, 255],
+      "bookmark_text": [51, 51, 51],
+      "button_background": [255, 152, 0],
+      "button_text": [255, 255, 255],
+      "ntp_background": [245, 245, 245],
+      "ntp_text": [51, 51, 51],
+      "ntp_header": [255, 204, 0],
+      "ntp_link": [0, 102, 204],
+      "ntp_section": [245, 245, 245],
+      "chrome_ntp_text_color": [51, 51, 51], 
+      "chrome_ntp_background": [245, 245, 245] 
+    },
+    "properties": {
+      "ntp_background_color": [245, 245, 245],
+      "ntp_text_color": [51, 51, 51],
+      "ntp_button_color": [0, 102, 204],  
+      "ntp_logo_color": [255, 204, 0], 
+      "ntp_searchbox_background": [255, 255, 255], 
+      "ntp_searchbox_text_color": [51, 51, 51],  
+      "ntp_searchbox_border": [0, 102, 204]  
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}

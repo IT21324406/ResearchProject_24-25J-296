@@ -1,0 +1,29 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    width: 400px;
+    padding: 10px;
+}
+
+
+h2 {
+    font-weight: bold;
+    color: #333;
+}
+
+#theme-info {
+    font-size: 16px;
+}
+
+button i {
+    margin-right: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}

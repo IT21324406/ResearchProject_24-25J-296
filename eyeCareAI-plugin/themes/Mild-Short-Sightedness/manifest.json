@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Mild Short-Sightedness Theme",
+  "version": "1.0",
+  "description": "A theme with larger text for users with mild short-sightedness.",
+  "theme": {
+    "colors": {
+      "frame": [220, 220, 220], 
+      "toolbar": [200, 200, 200],
+      "toolbar_text": [0, 0, 0],
+      "tab_text": [0, 0, 0],
+      "tab_background_text": [255, 255, 255],
+      "bookmark_text": [0, 0, 0],
+      "button_background": [100, 100, 255],
+      "button_text": [255, 255, 255],
+      "ntp_background": [240, 240, 240],
+      "ntp_text": [0, 0, 0],
+      "ntp_header": [100, 100, 255],
+      "ntp_link": [0, 0, 255],
+      "ntp_section": [230, 230, 230]
+    },
+    "properties": {
+      "ntp_background_color": [240, 240, 240],
+      "ntp_text_color": [0, 0, 0],
+      "ntp_button_color": [0, 0, 255],  
+      "ntp_logo_color": [100, 100, 255], 
+      "ntp_searchbox_background": [255, 255, 255], 
+      "ntp_searchbox_text_color": [0, 0, 0],  
+      "ntp_searchbox_border": [0, 0, 255]  
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}

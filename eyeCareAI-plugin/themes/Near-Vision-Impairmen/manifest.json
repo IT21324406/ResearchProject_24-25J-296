@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Near Vision Impairment Theme",
+  "version": "1.0",
+  "description": "A Chrome theme with larger text for users with near vision impairment.",
+  "theme": {
+    "colors": {
+      "frame": [220, 220, 220], 
+      "toolbar": [180, 180, 180],
+      "toolbar_text": [0, 0, 0],
+      "tab_text": [0, 0, 0],
+      "tab_background_text": [255, 255, 255],
+      "bookmark_text": [0, 0, 0],
+      "button_background": [255, 87, 34],
+      "button_text": [255, 255, 255],
+      "ntp_background": [245, 245, 245],
+      "ntp_text": [0, 0, 0],
+      "ntp_header": [255, 87, 34],
+      "ntp_link": [204, 51, 0],
+      "ntp_section": [230, 230, 230]
+    },
+    "properties": {
+      "ntp_background_color": [245, 245, 245],
+      "ntp_text_color": [0, 0, 0],
+      "ntp_button_color": [255, 87, 34],  
+      "ntp_logo_color": [255, 87, 34], 
+      "ntp_searchbox_background": [255, 255, 255], 
+      "ntp_searchbox_text_color": [0, 0, 0],  
+      "ntp_searchbox_border": [255, 87, 34]  
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}

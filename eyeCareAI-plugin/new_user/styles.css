@@ -1,0 +1,90 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fefefe;
+}
+
+/* Rounded Box Styling */
+.test-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.test-section:hover {
+    transform: scale(1.02);
+}
+
+/* Input Fields and Buttons Styling */
+input, select, button {
+    border-radius: 8px;
+}
+
+/* Buttons with Hover Animations */
+button {
+    background-color: #333;
+    color: #fefefe;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+/* Add Font Awesome Icons */
+button i {
+    margin-right: 8px;
+}
+
+button:hover i {
+    transform: translateX(8px);
+}
+
+/* Specific Section Styles */
+#userForm {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#startScreen {
+    text-align: center;
+}
+
+/* Color Blind Test */
+.black-box {
+    background-color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+.test-img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Short-Sighted Test */
+.white-box {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Near Vision Test */
+.random-text {
+    font-size: 18px;
+    text-align: center;
+}
+#colorBlindImage {
+    width: 100%;  /* Makes the image responsive */
+    height: 400px;  /* Keeps the aspect ratio */
+    max-width: 400px; /* Prevents the image from overflowing the container */
+    object-fit: cover; /* Ensures the image fully covers the box */
+    margin: 0 auto;
+    display: block;
+}

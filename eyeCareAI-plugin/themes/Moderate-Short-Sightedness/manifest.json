@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Moderate Short-Sightedness Theme",
+  "version": "1.0",
+  "description": "A high-contrast theme with large text for users with moderate short-sightedness.",
+  "theme": {
+    "colors": {
+      "frame": [0, 0, 0], 
+      "toolbar": [100, 100, 100],
+      "toolbar_text": [255, 255, 0],
+      "tab_text": [255, 255, 0],
+      "tab_background_text": [255, 255, 255],
+      "bookmark_text": [255, 255, 0],
+      "button_background": [0, 255, 255],
+      "button_text": [0, 0, 0],
+      "ntp_background": [50, 50, 50],
+      "ntp_text": [255, 255, 0],
+      "ntp_header": [255, 0, 0],
+      "ntp_link": [0, 255, 0],
+      "ntp_section": [100, 100, 100]
+    },
+    "properties": {
+      "ntp_background_color": [50, 50, 50],
+      "ntp_text_color": [255, 255, 0],
+      "ntp_button_color": [0, 255, 0],  
+      "ntp_logo_color": [255, 0, 0], 
+      "ntp_searchbox_background": [100, 100, 100], 
+      "ntp_searchbox_text_color": [255, 255, 0],  
+      "ntp_searchbox_border": [255, 255, 255]  
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}

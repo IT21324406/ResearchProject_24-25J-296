@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Aging Vision Theme",
+  "version": "1.0",
+  "description": "A high-contrast Chrome theme with large text for users experiencing presbyopia (aging vision).",
+  "theme": {
+    "colors": {
+      "frame": [50, 50, 50], 
+      "toolbar": [200, 200, 200],
+      "toolbar_text": [0, 0, 0],
+      "tab_text": [0, 0, 0],
+      "tab_background_text": [255, 255, 255],
+      "bookmark_text": [0, 0, 0],
+      "button_background": [0, 102, 204],
+      "button_text": [255, 255, 255],
+      "ntp_background": [240, 240, 240],
+      "ntp_text": [0, 0, 0],
+      "ntp_header": [0, 102, 204],
+      "ntp_link": [0, 51, 102],
+      "ntp_section": [230, 230, 230]
+    },
+    "properties": {
+      "ntp_background_color": [240, 240, 240],
+      "ntp_text_color": [0, 0, 0],
+      "ntp_button_color": [0, 102, 204],  
+      "ntp_logo_color": [0, 102, 204], 
+      "ntp_searchbox_background": [255, 255, 255], 
+      "ntp_searchbox_text_color": [0, 0, 0],  
+      "ntp_searchbox_border": [0, 102, 204]  
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}

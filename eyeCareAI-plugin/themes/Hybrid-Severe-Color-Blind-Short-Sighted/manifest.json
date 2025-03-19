@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Hybrid: Severe Color Blind & Short-Sighted Theme",
+  "version": "1.0",
+  "description": "A high-contrast, large-text theme for users with severe color blindness and short-sightedness.",
+  "theme": {
+    "colors": {
+      "frame": [0, 0, 0], 
+      "toolbar": [50, 50, 50],
+      "toolbar_text": [255, 255, 255],
+      "tab_text": [255, 255, 0],
+      "tab_background_text": [255, 255, 255],
+      "bookmark_text": [255, 255, 0],
+      "button_background": [255, 0, 0],
+      "button_text": [255, 255, 255],
+      "ntp_background": [0, 0, 0],
+      "ntp_text": [255, 255, 255],
+      "ntp_header": [255, 0, 0],
+      "ntp_link": [0, 255, 0],
+      "ntp_section": [50, 50, 50]
+    },
+    "properties": {
+      "ntp_background_color": [0, 0, 0],
+      "ntp_text_color": [255, 255, 255],
+      "ntp_button_color": [255, 0, 0],
+      "ntp_logo_color": [255, 0, 0],
+      "ntp_searchbox_background": [50, 50, 50],
+      "ntp_searchbox_text_color": [255, 255, 255],
+      "ntp_searchbox_border": [255, 255, 255]
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
