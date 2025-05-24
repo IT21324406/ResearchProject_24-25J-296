@@ -1,0 +1,75 @@
+.preferences-container {
+  max-width: 320px;
+  margin: 0 auto;
+  /* padding: 1rem; */
+  /* border: 4px solid black; */
+  /* border-radius: 1rem; */
+  background: #fff;
+}
+
+.remove-btn {
+  background-color: #0099ff;
+  color: white;
+  width: 100%;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.details-box {
+  /* margin-top: 1rem; */
+  border: 3px solid black;
+  /* padding: 1rem; */
+}
+
+h2 {
+  text-align: center;
+  /* font-size: 1.5rem; */
+  margin-bottom: 1rem;
+}
+
+.preference-list {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1rem; */
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.preference-item {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.preference-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.arrow {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  color: #0099ff;
+  font-size: 1.2rem;
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+.arrow.up {
+  transform: rotate(180deg);
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.preference-value {
+  margin-left: 2rem;
+  font-size: 0.95rem;
+  color: #333;
+}

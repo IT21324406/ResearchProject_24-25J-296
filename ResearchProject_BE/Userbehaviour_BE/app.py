@@ -166,7 +166,7 @@
 #     app.run(debug=True)
 
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS 
 from ai.q_learning import update_q_table, q_table, states, actions
 from ai.probabilistic_model import build_bayesian_network, make_prediction
 from ai.neural_network import predict_ui_adjustments
@@ -206,12 +206,7 @@ def get_preferences():
     scroll_speeds = [float(d.get('scrollSpeed', 0)) for d in interaction_data if 'scrollSpeed' in d]
     zoom_levels = [float(d.get('zoomLevel', 100)) for d in interaction_data if 'zoomLevel' in d]
     inactivity_times = [float(d.get('inactivityTime', 0)) for d in interaction_data if 'inactivityTime' in d]
-   # font_sizes = [float(d.get('fontSize', 16)) for d in interaction_data if 'fontSize' in d]
-#     font_sizes = [
-#     float(d.get('fontSize', '16px').replace('px', '')) 
-#     for d in interaction_data if 'fontSize' in d
-# ]
-
+  
     font_sizes = [
     float(d.get("fontSize", "16px").replace("px", ""))  # Remove "px"
     for d in interaction_data
@@ -243,6 +238,12 @@ def apply_preferences():
 
     preferences = get_preferences().json.get("preferences")
     return jsonify({"message": "Preferences applied successfully.", "preferences": preferences})            
+
+# @app.route('/clear-data', methods=['POST'])
+# def clear_data():
+#     interaction_data.clear()
+#     return jsonify({"message": "Interaction data cleared. Preferences will be rebuilt with new inputs."}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)

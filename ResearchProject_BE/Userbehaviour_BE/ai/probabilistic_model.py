@@ -57,3 +57,6 @@ def make_prediction(model, zoom_level, scroll_speed, inactivity_time, font_size)
     output = model(input_data)
     return output.item()  # Convert tensor to scalar value
         
+
+
+        
