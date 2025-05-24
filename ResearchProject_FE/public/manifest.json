@@ -1,42 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "UI Personalization Extension",
-  "short_name": "UI Personalizer",
+  "name": "Medium Summary Generator",
   "version": "1.0",
-  "description": "A Chrome extension for UI personalization with AI and ML features.",
-  "action": {
-    "default_popup": "index.html",
-    "default_icon": {
-      "16": "favicon.ico",
-      "48": "logo192.png",
-      "128": "logo512.png"
-    }
-  },
-
-  "permissions": ["storage", "activeTab", "scripting"],
-  "background": {
-    "service_worker": "background.js"
-  },
-
- "permissions": ["storage", "scripting", "activeTab", "tabs"],
- "host_permissions": ["<all_urls>"], 
-"content_scripts": [
-  {
-    "matches": ["<all_urls>"], 
-    "js": ["content.js"],      
-    "run_at": "document_idle"
-  }
-],
-"background": {
-  "service_worker": "background.js"
-},
-
-  "icons": {
-    "16": "favicon.ico",
-    "48": "logo192.png",
-    "128": "logo512.png"
-  },
+  "description": "Summarizes Medium articles using AI",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "identity",
+    "identity.email",
+    "tabs",
+    "downloads"
+  ],
   "host_permissions": [
-    "http://localhost:5000/*"
-  ]
+    "https://medium.com/*",
+    "<all_urls>"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [{
+    "resources": ["mindmap.html", "mindmap.js", "landing.html", "landing.js"],
+    "matches": ["<all_urls>"]
+  }],
+  "action": {
+    "default_popup": "landing.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  }
 }

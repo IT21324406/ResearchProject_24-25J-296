@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medium Article Personalizer</title>
+    <style>
+        body {
+            width: 320px;
+            padding: 20px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+
+        .header h1 {
+            color: #1976d2;
+            font-size: 20px;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .header p {
+            color: #546e7a;
+            font-size: 13px;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .button {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            text-align: left;
+            padding-left: 45px;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.9;
+        }
+
+        .ui-button {
+            background-color: #2196f3;
+        }
+
+        .ui-button::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E");
+        }
+
+        .content-button {
+            background-color: #1976d2;
+        }
+
+        .content-button::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z'/%3E%3C/svg%3E");
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button .description {
+            display: block;
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e3f2fd;
+            color: #78909c;
+            font-size: 12px;
+        }
+
+        .medium-only-message {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .medium-only-message .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .medium-only-message h2 {
+            color: #1976d2;
+            font-size: 18px;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        .medium-only-message p {
+            color: #546e7a;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Medium Article Personalizer</h1>
+            <p>Enhance your reading experience with AI-powered personalization</p>
+        </div>
+
+        <button class="button ui-button">
+            UI Personalization
+            <span class="description">Customize your reading interface</span>
+        </button>
+
+        <button class="button content-button">
+            Content Personalization
+            <span class="description">Get AI-powered summaries and insights</span>
+        </button>
+
+        <div class="footer">
+            Version 1.0
+        </div>
+    </div>
+
+    <script src="landing.js"></script>
+</body>
+</html> 

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mind Map</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .toolbar {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .toolbar button {
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    .toolbar button:hover {
+      background-color: #f0f0f0;
+    }
+    .toolbar button i {
+      font-size: 18px;
+      color: #333;
+    }
+    .toolbar .divider {
+      width: 1px;
+      background-color: #ddd;
+      margin: 0 5px;
+    }
+    .mindmap-container {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transform-origin: center center;
+      transition: transform 0.3s ease;
+    }
+    .central-topic {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      font-weight: bold;
+      text-align: center;
+      z-index: 10;
+      font-size: 18px;
+    }
+    .parent-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background-color: #2196F3;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      white-space: nowrap;
+      text-align: center;
+      z-index: 5;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .child-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background-color: #E3F2FD;
+      color: #0d47a1;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 160px;
+      z-index: 3;
+    }
+    .child-node .verb {
+      font-style: italic;
+      color: #00796B;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .child-node .child {
+      font-weight: 500;
+    }
+    .connection-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .zoom-level {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button id="zoomIn" title="Zoom In"><i class="fas fa-search-plus"></i></button>
+    <button id="zoomOut" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
+    <button id="resetZoom" title="Reset Zoom"><i class="fas fa-undo"></i></button>
+    <div class="divider"></div>
+    <button id="exportPNG" title="Export as PNG"><i class="fas fa-file-image"></i></button>
+    <button id="exportPDF" title="Export as PDF"><i class="fas fa-file-pdf"></i></button>
+    <button id="exportJPEG" title="Export as JPEG"><i class="fas fa-file-image"></i></button>
+  </div>
+  <div class="mindmap-container" id="mindmapContainer"></div>
+  <div class="zoom-level" id="zoomLevel">100%</div>
+
+  <script src="mindmap.js"></script>
+</body>
+</html> 
