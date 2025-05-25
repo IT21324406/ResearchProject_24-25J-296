@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaCopy, FaSync, FaVolumeUp, FaVolumeMute, FaPaperPlane } from "react-icons/fa";
 import { PuffLoader } from "react-spinners";
+import config from "../config";
 import "./SummaryGenerator.css";
 
 const ChatBotComponent = () => {
@@ -32,7 +33,7 @@ const ChatBotComponent = () => {
     setQuestion("");
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/chat", {
+      const response = await axios.post(`${config.API_URL}/chat`, {
         url: pageUrl,
         question: question,
       });
@@ -68,7 +69,7 @@ const ChatBotComponent = () => {
     const pageUrl = tab.url;
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/chat", {
+      const response = await axios.post(`${config.API_URL}/chat`, {
         url: pageUrl,
         question,
       });

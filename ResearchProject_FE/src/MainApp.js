@@ -6,6 +6,7 @@ import ApplyPage from "./pages/ApplyPage";
 import SuccessPage from "./pages/SuccessPage";
 import ErrorPage from "./pages/ErrorPage";
 import PreferencesPage from "./pages/PreferencesPage";
+import config from "./config";
 import "./App.css";
 
 function MainApp() {
@@ -13,7 +14,7 @@ function MainApp() {
   const [preferences, setPreferences] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/preferences")
+    fetch(`${config.SECOND_API_URL}/preferences`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to fetch preferences: ${response.status}`);

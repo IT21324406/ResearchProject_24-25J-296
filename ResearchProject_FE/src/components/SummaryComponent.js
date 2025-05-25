@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaCopy, FaSync, FaVolumeUp, FaVolumeMute, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { PuffLoader } from "react-spinners";
+import config from "../config";
 import "./SummaryGenerator.css";
 
 const SummaryComponent = () => {
@@ -22,7 +23,7 @@ const SummaryComponent = () => {
     const pageUrl = tab.url;
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/summarize", {
+      const response = await axios.post(`${config.API_URL}/summarize`, {
         url: pageUrl,
         type: summaryType,
       });
@@ -58,7 +59,7 @@ const SummaryComponent = () => {
 
     try {
       const user_email = await getUserEmail();
-      await axios.post("http://127.0.0.1:8000/save-summary", {
+      await axios.post(`${config.API_URL}/save-summary`, {
         url: pageUrl,
         summary: summary,
         summaryType: summaryType,

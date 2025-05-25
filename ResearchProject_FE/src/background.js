@@ -1,9 +1,11 @@
+import config from './config';
+
 chrome.runtime.onInstalled.addListener(() => {
   console.log("Extension installed.");
 });
 
 chrome.action.onClicked.addListener((tab) => {
-  fetch("http://127.0.0.1:5000/preferences")
+  fetch(`${config.SECOND_API_URL}/preferences`)
     .then((res) => res.json())
     .then((data) => {
       if (data.preferences) {

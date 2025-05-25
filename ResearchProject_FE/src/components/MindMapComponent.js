@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import config from '../config';
 import './MindMapComponent.css';
 
 const MindMapComponent = () => {
@@ -24,7 +25,7 @@ const MindMapComponent = () => {
         currentTabUrl = window.location.href;
       }
 
-      const response = await fetch('http://localhost:8000/mindmap', {
+      const response = await fetch(`${config.API_URL}/mindmap`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
