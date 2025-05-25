@@ -19,7 +19,7 @@
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "web_accessible_resources": [{
-    "resources": ["mindmap.html", "mindmap.js", "landing.html", "landing.js"],
+    "resources": ["mindmap.html", "mindmap.js", "landing.html", "landing.js", "second.html", "second.js"],
     "matches": ["<all_urls>"]
   }],
   "action": {

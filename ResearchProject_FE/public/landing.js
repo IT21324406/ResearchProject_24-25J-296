@@ -14,7 +14,8 @@ function navigateToUI() {
             return;
         }
         // TODO: Implement UI personalization navigation
-        alert('UI Personalization coming soon!');
+        //alert('UI Personalization coming soon!');
+        window.location.href = 'second.html';
     });
 }
 
