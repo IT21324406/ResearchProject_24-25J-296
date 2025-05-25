@@ -13,8 +13,6 @@ function navigateToUI() {
             showMediumOnlyMessage();
             return;
         }
-        // TODO: Implement UI personalization navigation
-        //alert('UI Personalization coming soon!');
         window.location.href = 'second.html';
     });
 }

@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePreferences } from "./PreferencesContext";
-
+import config from "../config";
 
 const ApplyPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-   const { preferences, setPreferences } = usePreferences();
+  const { preferences, setPreferences } = usePreferences();
 
   useEffect(() => {
     const hideButtons = () => {
@@ -21,12 +21,23 @@ const ApplyPage = () => {
     hideButtons();
   }, []);
 
-  const applyPreferences = () => {  
+  const applyPreferences = () => {
     setLoading(true);
 
-    fetch("http://127.0.0.1:5000/preferences")
-      .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch preferences.");
+    fetch(`${config.SECOND_API_URL}/preferences`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      mode: 'cors',
+      credentials: 'include'
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || `Failed to fetch preferences: ${response.status}`);
+        }
         return response.json();
       })
       .then((data) => {
@@ -54,34 +65,34 @@ const ApplyPage = () => {
           // Retry sending message until it succeeds or max attempts are hit
           let attempts = 0;
           const maxAttempts = 5;
-          const interval = 300; // milliseconds
+          const interval = 300;
 
           const trySendMessage = () => {
             chrome.scripting.executeScript(
               {
                 target: { tabId },
-                files: ["content.js"], // replace with your actual content script filename
+                files: ["content.js"],
               },
               () => {
-            chrome.tabs.sendMessage(tabId, message, (response) => {
-              if (chrome.runtime.lastError) {
-                attempts++;
-                if (attempts < maxAttempts) {
-                  setTimeout(trySendMessage, interval);
-                } else {
-                  console.error("Chrome error:", chrome.runtime.lastError.message);
-                  setLoading(false);
-                  navigate("/error");
-                }
-              } else {
-                // Message sent successfully
-                setLoading(false);
-                navigate("/success");
+                chrome.tabs.sendMessage(tabId, message, (response) => {
+                  if (chrome.runtime.lastError) {
+                    attempts++;
+                    if (attempts < maxAttempts) {
+                      setTimeout(trySendMessage, interval);
+                    } else {
+                      console.error("Chrome error:", chrome.runtime.lastError.message);
+                      setLoading(false);
+                      navigate("/error");
+                    }
+                  } else {
+                    // Message sent successfully
+                    setLoading(false);
+                    navigate("/success");
+                  }
+                });
               }
-            });
-          }
-        );
-      };
+            );
+          };
 
           trySendMessage();
         });
@@ -93,64 +104,53 @@ const ApplyPage = () => {
       });
   };
 
-//   return (
-//     <div style={{ padding: "20px" }}>
-//       <button onClick={applyPreferences} disabled={loading}>
-//         {loading ? "Applying..." : "Apply Preferences"}
-//       </button>
-//     </div>
-//   );
-// };
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "column",
+      backgroundColor: "#f9fafb"
+    }}>
+      {loading ? (
+        <>
+          <div style={{
+            width: "40px",
+            height: "40px",
+            border: "4px solid #ccc",
+            borderTop: "4px solid #3b82f6",
+            borderRadius: "50%",
+            animation: "spin 1s linear infinite"
+          }} />
+          <p style={{ marginTop: "12px", color: "#374151" }}>Applying Preferences...</p>
+        </>
+      ) : (
+        <button
+          onClick={applyPreferences}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            color: "#fff",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+            width: "320px"
+          }}
+        >
+          Apply Preferences
+        </button>
+      )}
 
-return (
-  <div style={{
-   
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    backgroundColor: "#f9fafb"
-  }}>
-    {loading ? (
-      <>
-        <div style={{
-          width: "40px",
-          height: "40px",
-          border: "4px solid #ccc",
-          borderTop: "4px solid #3b82f6",
-          borderRadius: "50%",
-          animation: "spin 1s linear infinite"
-        }} />
-        <p style={{ marginTop: "12px", color: "#374151" }}>Applying Preferences...</p>
-      </>
-    ) : (
-      <button
-        onClick={applyPreferences}
-        style={{
-          padding: "10px 20px",
-          fontSize: "16px",
-          color: "#fff",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-          width: "320px"
-        }}
-      >
-        Apply Preferences
-      </button>
-    )}
-
-    <style>
-      {`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}
-    </style>
-  </div>
-);
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
+    </div>
+  );
 };
-
 
 export default ApplyPage;

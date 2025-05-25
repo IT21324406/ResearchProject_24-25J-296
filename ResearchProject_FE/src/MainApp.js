@@ -36,7 +36,7 @@ function MainApp() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/">
       <div className="button-container-outer">
         <div className="button-container-inner">
           <Link to="/apply">

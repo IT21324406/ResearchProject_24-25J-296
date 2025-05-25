@@ -16,7 +16,7 @@
     "https://medium.com/*",
     "https://it21324406-researchproject-be.onrender.com/*",
     "https://it21324406-24-25j-296-it21215360-be-q979.onrender.com/*",
-    "<all_urls>"
+    "https://*.onrender.com/*"
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
