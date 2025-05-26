@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Medium Summary Generator",
+  "name": "Reactive Web",
   "version": "1.0",
-  "description": "Summarizes Medium articles using AI",
+  "description": "Software User Interface Personalization for Medium Articles",
   "permissions": [
     "activeTab",
     "scripting",
